@@ -1,4 +1,4 @@
-# Blank Mod Repo
+# Leaderboard Mod
 
 This is a repo to be copied whenever a new mod is being made.
 
