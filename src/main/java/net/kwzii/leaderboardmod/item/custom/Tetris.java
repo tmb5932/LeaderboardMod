@@ -3,6 +3,7 @@ package net.kwzii.leaderboardmod.item.custom;
 import net.kwzii.leaderboardmod.block.ModBlocks;
 import net.kwzii.leaderboardmod.block.entity.LeaderboardBlockEntity;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -19,7 +20,7 @@ public class Tetris extends Item {
     private int pointVal = 100;
 
     public Tetris(Properties pProperties) {
-        super(pProperties.stacksTo(1).rarity(Rarity.EPIC));
+        super(pProperties.stacksTo(1).rarity(Rarity.UNCOMMON));
     }
 
     @Override
@@ -28,7 +29,8 @@ public class Tetris extends Item {
             if (linked && pLevel.getBlockState(leaderboard).getBlock() == ModBlocks.LEADERBOARD.get()) {
                 LeaderboardBlockEntity blockEntity = (LeaderboardBlockEntity) pLevel.getBlockEntity(leaderboard);
                 if (!pPlayer.isShiftKeyDown()) {
-                blockEntity.addScore(pPlayer.getDisplayName().getString(), pointVal);
+//                blockEntity.addScore(pPlayer.getDisplayName().getString(), pointVal);
+                blockEntity.addScore(pPlayer.getItemInHand(pUsedHand).getDisplayName().getString(), pointVal);
                 pointVal += 100;
                 }
             } else {
@@ -46,6 +48,7 @@ public class Tetris extends Item {
             if (pContext.getLevel().getBlockState(pContext.getClickedPos()).getBlock() == ModBlocks.LEADERBOARD.get()) {
                 leaderboard = pContext.getClickedPos();
                 linked = true;
+                pContext.getPlayer().sendSystemMessage(Component.literal("Tetris has been linked!"));
             }
         }
         return InteractionResult.PASS;

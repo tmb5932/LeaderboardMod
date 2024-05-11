@@ -1,6 +1,7 @@
 package net.kwzii.leaderboardmod.item;
 
 import net.kwzii.leaderboardmod.LeaderboardMod;
+import net.kwzii.leaderboardmod.item.custom.LeaderboardResetTool;
 import net.kwzii.leaderboardmod.item.custom.Tetris;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -18,6 +19,9 @@ public class ModItems {
 
     public static final RegistryObject<Item> TETRIS = ITEMS.register("tetris",
             () -> new Tetris(new Item.Properties()));
+
+    public static final RegistryObject<Item> LEADERBOARD_RESET_TOOL = ITEMS.register("leaderboard_reset_tool",
+            () -> new LeaderboardResetTool(new Item.Properties()));
 
     /**
      * Registers an IEventBus with the mod items

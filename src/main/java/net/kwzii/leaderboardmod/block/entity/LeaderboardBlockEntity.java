@@ -15,16 +15,13 @@ import org.jetbrains.annotations.Nullable;
 
 public class LeaderboardBlockEntity extends BlockEntity implements MenuProvider {
     private boolean updated = false;
-    private Ranking first = new Ranking("-", 0);
-    private Ranking second = new Ranking("-", 0);
-    private Ranking third = new Ranking("-", 0);
-    private Ranking newScore;
+    private static Ranking first = new Ranking("-", 0);
+    private static Ranking second = new Ranking("-", 0);
+    private static Ranking third = new Ranking("-", 0);
+    private static Ranking newScore;
 
     public LeaderboardBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.LEADERBOARD_BE.get(), pPos, pBlockState);
-        System.out.println(first);
-        System.out.println(second);
-        System.out.println(third);
     }
 
     /**
@@ -100,14 +97,16 @@ public class LeaderboardBlockEntity extends BlockEntity implements MenuProvider 
      */
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
         if (updated) {
-            if (newScore.points() > third.points()) {
-                third = newScore;
-                if (newScore.points() > second.points()) {
-                    third = second;
-                    second = newScore;
-                    if (newScore.points() > first.points()) {
-                        second = first;
-                        first = newScore;
+            if (newScore != null) {
+                if (newScore.points() > third.points()) {
+                    third = newScore;
+                    if (newScore.points() > second.points()) {
+                        third = second;
+                        second = newScore;
+                        if (newScore.points() > first.points()) {
+                            second = first;
+                            first = newScore;
+                        }
                     }
                 }
             }
@@ -117,6 +116,13 @@ public class LeaderboardBlockEntity extends BlockEntity implements MenuProvider 
 
     public void addScore(String name, int points) {
         newScore = new Ranking(name, points);
+        updated = true;
+    }
+
+    public void resetLeaderboard() {
+        first = new Ranking("-", 0);
+        second = new Ranking("-", 0);
+        third = new Ranking("-", 0);
         updated = true;
     }
 
