@@ -29,6 +29,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     protected void registerStatesAndModels() {
 
         blockWithItem(ModBlocks.LEADERBOARD);
+        blockWithItem(ModBlocks.ARCADE_MACHINE);
 
     }
 

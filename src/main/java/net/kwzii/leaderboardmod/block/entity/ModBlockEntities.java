@@ -20,6 +20,10 @@ public class ModBlockEntities {
             BLOCK_ENTITIES.register("leaderboard_be", () ->
                     BlockEntityType.Builder.of(LeaderboardBlockEntity::new, ModBlocks.LEADERBOARD.get()).build(null));
 
+    public static final RegistryObject<BlockEntityType<ArcadeMachineBlockEntity>> ARCADE_MACHINE_BE =
+            BLOCK_ENTITIES.register("arcade_machine_be", () ->
+                    BlockEntityType.Builder.of(ArcadeMachineBlockEntity::new, ModBlocks.ARCADE_MACHINE.get()).build(null));
+
     /**
      * Method to register an IEventBus with the block entities
      * @param eventBus IEventBus to be registered with the block entity deferred register

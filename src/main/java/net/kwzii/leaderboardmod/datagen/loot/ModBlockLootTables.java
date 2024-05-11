@@ -30,6 +30,7 @@ public class ModBlockLootTables extends BlockLootSubProvider {
     @Override
     protected void generate() {
         this.dropSelf(ModBlocks.LEADERBOARD.get());
+        this.dropSelf(ModBlocks.ARCADE_MACHINE.get());
     }
 
     /**

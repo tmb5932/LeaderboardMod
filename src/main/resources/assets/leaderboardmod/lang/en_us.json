@@ -1,8 +1,9 @@
 {
-  "item.leaderboardmod.gameboy": "Gameboy Advanced",
+  "item.leaderboardmod.leaderboard_linker_tool": "Leaderboard Linker Tool",
   "item.leaderboardmod.leaderboard_reset_tool": "Leaderboard Reset Tool",
 
   "block.leaderboardmod.leaderboard_block": "Leaderboard",
+  "block.leaderboardmod.arcade_machine_block": "Arcade Machine",
 
   "creativetab.leaderboardmod_tab": "Kwzii's Leaderboard Mod"
 }

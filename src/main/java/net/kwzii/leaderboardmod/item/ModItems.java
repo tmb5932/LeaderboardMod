@@ -2,7 +2,7 @@ package net.kwzii.leaderboardmod.item;
 
 import net.kwzii.leaderboardmod.LeaderboardMod;
 import net.kwzii.leaderboardmod.item.custom.LeaderboardResetTool;
-import net.kwzii.leaderboardmod.item.custom.Gameboy;
+import net.kwzii.leaderboardmod.item.custom.LeaderboardLinkerTool;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -17,8 +17,8 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, LeaderboardMod.MOD_ID);
 
-    public static final RegistryObject<Item> GAMEBOY = ITEMS.register("gameboy",
-            () -> new Gameboy(new Item.Properties()));
+    public static final RegistryObject<Item> LEADERBOARD_LINKER_TOOL = ITEMS.register("leaderboard_linker_tool",
+            () -> new LeaderboardLinkerTool(new Item.Properties()));
 
     public static final RegistryObject<Item> LEADERBOARD_RESET_TOOL = ITEMS.register("leaderboard_reset_tool",
             () -> new LeaderboardResetTool(new Item.Properties()));

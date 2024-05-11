@@ -40,9 +40,9 @@ public class LeaderboardScreen extends AbstractContainerScreen<LeaderboardMenu> 
         inventoryLabelY += 10000;
         midX = width / 2;
         midY = height / 2;
-        rank1 = new StringWidget(midX - (midX / 20), midY - (midY / 20), 75, 20, Component.literal("RANK 1 TEST"), this.font);
-        rank2 = new StringWidget(midX - (midX / 10), midY - (midY / 10), 75, 20, Component.literal("RANK 2 TEST"), this.font);
-        rank3 = new StringWidget(midX, midY, 75, 20, Component.literal("RANK 3 TEST"), this.font);
+        rank1 = new StringWidget(midX - (midX / 4), midY - (midY / 3), 75, 20, Component.literal("RANK 1 TEST"), this.font);
+        rank2 = new StringWidget(midX - (midX / 4), midY - (midY / 5), 75, 20, Component.literal("RANK 2 TEST"), this.font);
+        rank3 = new StringWidget(midX - (midX / 4), midY - (midY / 8) + 5, 75, 20, Component.literal("RANK 3 TEST"), this.font);
 //        rank1.setColor(0xFFFFFF);
 //        rank2.setColor(0xFFFFFF);
 //        rank3.setColor(0xFFFFFF);
@@ -67,10 +67,9 @@ public class LeaderboardScreen extends AbstractContainerScreen<LeaderboardMenu> 
         midX = width / 2;
         midY = height / 2;
         rank1.setPosition(midX - (midX / 4), midY - (midY / 3));
-        rank2.setPosition(midX - (midX / 4), midY - (midY / 4));
-        rank3.setPosition(midX - (midX / 4), midY);
-        rank3.setWidth(125);
-        rank3.setHeight(40);
+        rank2.setPosition(midX - (midX / 4), midY - (midY / 4) + 5);
+        rank3.setPosition(midX - (midX / 4), midY - (midY / 8) + 5);
+
         int x = (width - imageWidth) / 2;
         int y = (height - imageHeight) / 2;
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);

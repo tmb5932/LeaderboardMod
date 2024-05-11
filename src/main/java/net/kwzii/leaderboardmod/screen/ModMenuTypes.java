@@ -21,8 +21,8 @@ public class ModMenuTypes {
     public static final RegistryObject<MenuType<LeaderboardMenu>> LEADERBOARD_MENU =
             registerMenuType("leaderboard_menu", LeaderboardMenu::new);
 
-    public static final RegistryObject<MenuType<GameboyMenu>> GAMEBOY_MENU =
-            registerMenuType("gameboy_menu", GameboyMenu::new);
+    public static final RegistryObject<MenuType<ArcadeMachineMenu>> ARCADE_MACHINE_MENU =
+            registerMenuType("arcade_machine_menu", ArcadeMachineMenu::new);
 
     private static <T extends AbstractContainerMenu>RegistryObject<MenuType<T>> registerMenuType(String name, IContainerFactory<T> factory) {
         return MENUS.register(name, () -> IForgeMenuType.create(factory));

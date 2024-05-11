@@ -1,6 +1,7 @@
 package net.kwzii.leaderboardmod.block;
 
 import net.kwzii.leaderboardmod.LeaderboardMod;
+import net.kwzii.leaderboardmod.block.custom.ArcadeMachineBlock;
 import net.kwzii.leaderboardmod.block.custom.LeaderboardBlock;
 import net.kwzii.leaderboardmod.item.ModItems;
 import net.minecraft.world.item.BlockItem;
@@ -24,6 +25,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> LEADERBOARD = registerBlock("leaderboard_block",
             () -> new LeaderboardBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
+
+    public static final RegistryObject<Block> ARCADE_MACHINE = registerBlock("arcade_machine_block",
+            () -> new ArcadeMachineBlock(BlockBehaviour.Properties.copy(Blocks.IRON_BLOCK).noOcclusion()));
 
     private static <T extends Block>RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

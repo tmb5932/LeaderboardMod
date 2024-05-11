@@ -30,7 +30,7 @@ public class LeaderboardBlockEntity extends BlockEntity implements MenuProvider 
      */
     @Override
     public Component getDisplayName() {
-        return Component.translatable("block.leaderboardmod.leaderboard_block");
+        return Component.translatable("block.leaderboardmod.arcade_machine_block");
     }
 
     /**
@@ -97,6 +97,7 @@ public class LeaderboardBlockEntity extends BlockEntity implements MenuProvider 
      */
     public void tick(Level pLevel, BlockPos pPos, BlockState pState) {
         if (updated) {
+            System.out.println("TICK UPDATING");
             if (newScore != null) {
                 if (newScore.points() > third.points()) {
                     third = newScore;
@@ -115,6 +116,7 @@ public class LeaderboardBlockEntity extends BlockEntity implements MenuProvider 
     }
 
     public void addScore(String name, int points) {
+        System.out.println("SCORE ADDED; " + name + ", " + points);
         newScore = new Ranking(name, points);
         updated = true;
     }

@@ -1,8 +1,6 @@
 package net.kwzii.leaderboardmod.block.custom;
 
-import net.kwzii.leaderboardmod.block.entity.LeaderboardBlockEntity;
-import net.kwzii.leaderboardmod.block.entity.ModBlockEntities;
-import net.kwzii.leaderboardmod.item.ModItems;
+import net.kwzii.leaderboardmod.block.entity.ArcadeMachineBlockEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -14,8 +12,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
@@ -27,23 +23,22 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 
 /**
- * Custom Leaderboard Block class
+ * Class for Arcade Machine Block
  * @author Travis Brown
  */
-public class LeaderboardBlock extends BaseEntityBlock {
+public class ArcadeMachineBlock extends BaseEntityBlock {
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
     public static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 16, 16);
 
     /**
-     * Constructor for the Leaderboard Block
+     * Constructor for the arcade machine
      * @param pProperties the block properties
      */
-    public LeaderboardBlock(Properties pProperties) {
+    public ArcadeMachineBlock(Properties pProperties) {
         super(pProperties);
     }
-
     /**
-     * Overrides getShape to give a proper hitbox for the leaderboard block
+     * Overrides getShape to give a proper hitbox for the arcade machine block
      * @param pState the block state
      * @param pLevel the world instance
      * @param pPos the block position
@@ -110,7 +105,7 @@ public class LeaderboardBlock extends BaseEntityBlock {
     }
 
     /**
-     * The interaction method to open leaderboard block GUI when right-clicked
+     * The interaction method to open arcade machine block GUI when right-clicked
      * @param pState the block state
      * @param pLevel the world instance
      * @param pPos the block position
@@ -121,39 +116,26 @@ public class LeaderboardBlock extends BaseEntityBlock {
      */
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if (!pLevel.isClientSide() && !pPlayer.getItemInHand(InteractionHand.MAIN_HAND).is(ModItems.LEADERBOARD_LINKER_TOOL.get())) {
+        if (!pLevel.isClientSide()) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
-            if(entity instanceof LeaderboardBlockEntity) {
-                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (LeaderboardBlockEntity)entity, pPos); // ONLY WORKS IN 1.20.1, NOT NEWER!!
+            if(entity instanceof ArcadeMachineBlockEntity) {
+                NetworkHooks.openScreen(((ServerPlayer)pPlayer), (ArcadeMachineBlockEntity)entity, pPos); // ONLY WORKS IN 1.20.1, NOT NEWER!!
             } else {
-                throw new IllegalStateException("LEADERBOARD Container provider is missing!");
+                throw new IllegalStateException("ARCADE MACHINE Container provider is missing!");
             }
         }
         return InteractionResult.sidedSuccess(pLevel.isClientSide());
     }
 
-    @Nullable
-    @Override
-    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new LeaderboardBlockEntity(pPos, pState);
-    }
-
     /**
-     * Method that creates a new tickHelper for the tick method in the block entity
-     * @param pLevel the world instance
+     * Creates new arcade machine block entity
+     * @param pPos the position of the block
      * @param pState the block state
-     * @param pBlockEntityType the block entity type
-     * @return the TickerHelper
-     * @param <T> The block entity
+     * @return the newly created arcade machine block entity
      */
     @Nullable
     @Override
-    public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        if (pLevel.isClientSide()) {
-            return null;
-        }
-
-        return createTickerHelper(pBlockEntityType, ModBlockEntities.LEADERBOARD_BE.get(),
-                (level, blockPos, blockState, pBlockEntity) -> pBlockEntity.tick(level, blockPos, blockState));
+    public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
+        return new ArcadeMachineBlockEntity(pPos, pState);
     }
 }

@@ -30,7 +30,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         // Item model example
-        simpleItem(ModItems.GAMEBOY);
+        simpleItem(ModItems.LEADERBOARD_LINKER_TOOL);
         simpleItem(ModItems.LEADERBOARD_RESET_TOOL);
 
         // Creates Item models for blocks that have a non data gen block state and model

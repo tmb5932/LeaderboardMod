@@ -10,11 +10,16 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class GameboyScreen extends AbstractContainerScreen<GameboyMenu> {
+public class ArcadeMachineScreen extends AbstractContainerScreen<ArcadeMachineMenu> {
     private static final ResourceLocation TEXTURE =
             new ResourceLocation(LeaderboardMod.MOD_ID, "textures/gui/gameboy_gui.png");
 
-    public GameboyScreen(GameboyMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
+    Button.Builder uploadBuilder = new Button.Builder(Component.literal("Upload"), (button) -> {
+        this.menu.uploadScore(2000);
+        System.out.println("BUTTON CLICKED");
+    });
+
+    public ArcadeMachineScreen(ArcadeMachineMenu pMenu, Inventory pPlayerInventory, Component pTitle) {
         super(pMenu, pPlayerInventory, pTitle);
     }
 
@@ -22,6 +27,7 @@ public class GameboyScreen extends AbstractContainerScreen<GameboyMenu> {
     protected void init() {
         super.init();
         inventoryLabelY += 10000;
+        this.addRenderableWidget(uploadBuilder.build());
     }
 
     /**
