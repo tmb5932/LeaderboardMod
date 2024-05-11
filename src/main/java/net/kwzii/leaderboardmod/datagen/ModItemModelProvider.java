@@ -30,7 +30,8 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
         // Item model example
-        simpleItem(ModItems.TETRIS);
+        simpleItem(ModItems.GAMEBOY);
+        simpleItem(ModItems.LEADERBOARD_RESET_TOOL);
 
         // Creates Item models for blocks that have a non data gen block state and model
 //        withExistingParent("example_custom_block", modLoc("block/example_custom_block"));

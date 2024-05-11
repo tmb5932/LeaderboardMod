@@ -121,7 +121,7 @@ public class LeaderboardBlock extends BaseEntityBlock {
      */
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if (!pLevel.isClientSide() && !pPlayer.getItemInHand(InteractionHand.MAIN_HAND).is(ModItems.TETRIS.get())) {
+        if (!pLevel.isClientSide() && !pPlayer.getItemInHand(InteractionHand.MAIN_HAND).is(ModItems.GAMEBOY.get())) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof LeaderboardBlockEntity) {
                 NetworkHooks.openScreen(((ServerPlayer)pPlayer), (LeaderboardBlockEntity)entity, pPos); // ONLY WORKS IN 1.20.1, NOT NEWER!!

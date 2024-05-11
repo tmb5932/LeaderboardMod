@@ -5,9 +5,9 @@ import net.kwzii.leaderboardmod.block.ModBlocks;
 import net.kwzii.leaderboardmod.block.entity.ModBlockEntities;
 import net.kwzii.leaderboardmod.item.ModCreativeModTabs;
 import net.kwzii.leaderboardmod.item.ModItems;
+import net.kwzii.leaderboardmod.screen.GameboyScreen;
 import net.kwzii.leaderboardmod.screen.LeaderboardScreen;
 import net.kwzii.leaderboardmod.screen.ModMenuTypes;
-import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -73,6 +73,7 @@ public class LeaderboardMod {
         {
             // Registers Menus with the screens
             MenuScreens.register(ModMenuTypes.LEADERBOARD_MENU.get(), LeaderboardScreen::new);
+            MenuScreens.register(ModMenuTypes.GAMEBOY_MENU.get(), GameboyScreen::new);
         }
     }
 }

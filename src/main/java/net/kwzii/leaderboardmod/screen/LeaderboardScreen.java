@@ -1,9 +1,7 @@
 package net.kwzii.leaderboardmod.screen;
 
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 import net.kwzii.leaderboardmod.LeaderboardMod;
-import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.components.StringWidget;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -40,14 +38,14 @@ public class LeaderboardScreen extends AbstractContainerScreen<LeaderboardMenu> 
     protected void init() {
         super.init();
         inventoryLabelY += 10000;
-        midX = (width - imageWidth) / 2;
-        midY = (height - imageHeight) / 2;
-        rank1 = new StringWidget(midX - (midX / 14), midY, 75, 20, Component.literal("RANK 1 TEST"), this.font);
-        rank2 = new StringWidget(midX - (midX / 14), midY + (midY / 2), 75, 20, Component.literal("RANK 2 TEST"), this.font);
-        rank3 = new StringWidget(midX - (midX / 14), midY + (midY ), 75, 20, Component.literal("RANK 3 TEST"), this.font);
-        rank1.setColor(0xFFFFFF);
-        rank2.setColor(0xFFFFFF);
-        rank3.setColor(0xFFFFFF);
+        midX = width / 2;
+        midY = height / 2;
+        rank1 = new StringWidget(midX - (midX / 20), midY - (midY / 20), 75, 20, Component.literal("RANK 1 TEST"), this.font);
+        rank2 = new StringWidget(midX - (midX / 10), midY - (midY / 10), 75, 20, Component.literal("RANK 2 TEST"), this.font);
+        rank3 = new StringWidget(midX, midY, 75, 20, Component.literal("RANK 3 TEST"), this.font);
+//        rank1.setColor(0xFFFFFF);
+//        rank2.setColor(0xFFFFFF);
+//        rank3.setColor(0xFFFFFF);
         addRenderableWidget(rank1);
         addRenderableWidget(rank2);
         addRenderableWidget(rank3);
@@ -62,16 +60,19 @@ public class LeaderboardScreen extends AbstractContainerScreen<LeaderboardMenu> 
      */
     @Override
     protected void renderBg(GuiGraphics guiGraphics, float pPartialTick, int pMouseX, int pMouseY) {
-        midX = (width - imageWidth) / 2;
-        midY = (height - imageHeight) / 2;
         RenderSystem.setShader(GameRenderer::getPositionTexShader);
         RenderSystem.setShaderColor(1.0F, 1.0F, 1.0F, 1.0F);
         RenderSystem.setShaderTexture(0, TEXTURE);
-        int x = midX;
-        int y = midY;
-        rank1.setPosition(midX - (midX / 14), midY);
-        rank2.setPosition(midX - (midX / 14), midY + (midY / 2));
-        rank3.setPosition(midX - (midX / 14), midY + (midY ));
+
+        midX = width / 2;
+        midY = height / 2;
+        rank1.setPosition(midX - (midX / 4), midY - (midY / 3));
+        rank2.setPosition(midX - (midX / 4), midY - (midY / 4));
+        rank3.setPosition(midX - (midX / 4), midY);
+        rank3.setWidth(125);
+        rank3.setHeight(40);
+        int x = (width - imageWidth) / 2;
+        int y = (height - imageHeight) / 2;
         guiGraphics.blit(TEXTURE, x, y, 0, 0, imageWidth, imageHeight);
         renderRankings();
     }
@@ -80,7 +81,6 @@ public class LeaderboardScreen extends AbstractContainerScreen<LeaderboardMenu> 
      * Method to render the updated rankings
      */
     private void renderRankings() {
-//        System.out.println("UPDATED RANK1:" + menu.getRankingID(1) + ", " + menu.getRankingPoints(1));
         rank1.setMessage(Component.literal(menu.getRankingID(1) + ": " + menu.getRankingPoints(1)));
         rank2.setMessage(Component.literal(menu.getRankingID(2) + ": " + menu.getRankingPoints(2)));
         rank3.setMessage(Component.literal(menu.getRankingID(3) + ": " + menu.getRankingPoints(3)));
