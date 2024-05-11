@@ -33,7 +33,6 @@ public class ModTags {
      * Custom Mod Tags for Items
      */
     public static class Items {
-        public static final TagKey<Item> EXAMPLE_ITEM_TAG = tag("example_item_tag");
 
         /**
          * Method to create a new custom tag for items

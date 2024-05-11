@@ -5,6 +5,7 @@ import net.kwzii.leaderboardmod.block.ModBlocks;
 import net.kwzii.leaderboardmod.item.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.AbstractCookingRecipe;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -35,20 +36,14 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
      */
     @Override
     protected void buildRecipes(Consumer<FinishedRecipe> consumer) {
-        // Shaped recipe example
-        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModItems.EXAMPLE_ITEM.get())
-                .pattern("BBB")
-                .pattern("BWB")
+        // Leaderboard Recipe
+        ShapedRecipeBuilder.shaped(RecipeCategory.MISC, ModBlocks.LEADERBOARD.get())
                 .pattern(" B ")
-                .define('W', Items.WHITE_WOOL)
-                .define('B', Items.BLACK_DYE)
-                .unlockedBy(getHasName(Items.WHITE_WOOL), has(Items.WHITE_WOOL))
-                .save(consumer);
-
-        // Shapeless recipe example
-        ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, ModBlocks.EXAMPLE_BLOCK.get(), 1)
-                .requires(ModItems.EXAMPLE_ITEM.get(), 4)
-                .unlockedBy(getHasName(ModItems.EXAMPLE_ITEM.get()), has(ModItems.EXAMPLE_ITEM.get()))
+                .pattern(" P ")
+                .pattern("PPP")
+                .define('P', ItemTags.PLANKS)
+                .define('B', ItemTags.BANNERS)
+                .unlockedBy(getHasName(Items.WHITE_BANNER), has(Items.WHITE_BANNER))
                 .save(consumer);
     }
 

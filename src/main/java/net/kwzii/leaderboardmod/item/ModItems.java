@@ -1,7 +1,7 @@
 package net.kwzii.leaderboardmod.item;
 
 import net.kwzii.leaderboardmod.LeaderboardMod;
-import net.kwzii.leaderboardmod.item.custom.ExampleItem;
+import net.kwzii.leaderboardmod.item.custom.Tetris;
 import net.minecraft.world.item.Item;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -16,9 +16,8 @@ public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, LeaderboardMod.MOD_ID);
 
-    // Example item
-    public static final RegistryObject<Item> EXAMPLE_ITEM = ITEMS.register("example_item",
-            () -> new ExampleItem(new Item.Properties().stacksTo(64)));
+    public static final RegistryObject<Item> TETRIS = ITEMS.register("tetris",
+            () -> new Tetris(new Item.Properties()));
 
     /**
      * Registers an IEventBus with the mod items

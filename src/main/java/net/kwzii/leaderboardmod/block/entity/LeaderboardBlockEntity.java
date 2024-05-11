@@ -22,6 +22,9 @@ public class LeaderboardBlockEntity extends BlockEntity implements MenuProvider 
 
     public LeaderboardBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModBlockEntities.LEADERBOARD_BE.get(), pPos, pBlockState);
+        System.out.println(first);
+        System.out.println(second);
+        System.out.println(third);
     }
 
     /**
@@ -44,6 +47,9 @@ public class LeaderboardBlockEntity extends BlockEntity implements MenuProvider 
     @Nullable
     @Override
     public AbstractContainerMenu createMenu(int pContainerId, Inventory inv, Player player) {
+        System.out.println(first);
+        System.out.println(second);
+        System.out.println(third);
         return new LeaderboardMenu(pContainerId, inv, this);
     }
 
@@ -133,4 +139,12 @@ public class LeaderboardBlockEntity extends BlockEntity implements MenuProvider 
     }
 }
 
-record Ranking(String name, int points) {}
+record Ranking(String name, int points) {
+    @Override
+    public String toString() {
+        return "Ranking{" +
+                "name='" + name + '\'' +
+                ", points=" + points +
+                '}';
+    }
+}

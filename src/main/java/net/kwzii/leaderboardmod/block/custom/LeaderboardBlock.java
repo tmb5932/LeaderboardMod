@@ -2,6 +2,7 @@ package net.kwzii.leaderboardmod.block.custom;
 
 import net.kwzii.leaderboardmod.block.entity.LeaderboardBlockEntity;
 import net.kwzii.leaderboardmod.block.entity.ModBlockEntities;
+import net.kwzii.leaderboardmod.item.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
@@ -55,7 +56,7 @@ public class LeaderboardBlock extends BaseEntityBlock {
     }
 
     /**
-     * Override method getRenderShape to return the custom printer block model
+     * Override method getRenderShape to return the custom block model
      * @param pState the block state
      * @return the RenderShape.MODEL
      */
@@ -120,7 +121,7 @@ public class LeaderboardBlock extends BaseEntityBlock {
      */
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
-        if (!pLevel.isClientSide()) {
+        if (!pLevel.isClientSide() && !pPlayer.getItemInHand(InteractionHand.MAIN_HAND).is(ModItems.TETRIS.get())) {
             BlockEntity entity = pLevel.getBlockEntity(pPos);
             if(entity instanceof LeaderboardBlockEntity) {
                 NetworkHooks.openScreen(((ServerPlayer)pPlayer), (LeaderboardBlockEntity)entity, pPos); // ONLY WORKS IN 1.20.1, NOT NEWER!!

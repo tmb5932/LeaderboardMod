@@ -35,11 +35,6 @@ public class ModItemTagGenerator extends ItemTagsProvider {
      */
     @Override
     protected void addTags(HolderLookup.Provider provider) {
-        // Example tag initialization
-        this.tag(ModTags.Items.EXAMPLE_ITEM_TAG).add(
-                Items.NAME_TAG,
-                ModItems.EXAMPLE_ITEM.get()
-        );
 
 
     }
